@@ -1,24 +1,39 @@
-import React from 'react'
-import './Navbar.css'
-import logo from '../Assets/logo.png'
-import cart_icon from '../Assets/cart_icon.png'
+import React, { useState } from 'react'
+import './Navbar.css';
+import logo from '../Assets/logoSpark.png';
+import cart_icon from '../Assets/cart_icon.png';
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+
+const [menu, setMenu]= useState("shop");
+
   return (
     <div>
       <div className="navbar">
         <div className="nav-logo">
             <img src={logo} alt=''/>
-            <p>SPARK STORE</p>
+            {/* <p>SPARKS STORE</p> */}
         </div>
         <ul className="nav-menu">
-            <li>Shop</li>
-            <li>Men</li>
-            <li>Women</li>
-            <li>Kids</li>
+            <li onClick={()=>{setMenu("shop")}}><Link style={{textDecoration:'none'}} to='/'>Shop </Link>{menu==="shop"?<hr />:<></>}</li>
+            <li onClick={()=>{setMenu("mens")}}><Link  style={{textDecoration:'none'}}    to='/mens'>Men </Link>{menu==="mens"? <hr />:<></>}  </li>
+            <li onClick={()=>{setMenu("womens")}}><Link  style={{textDecoration:'none'}} to='/womens'>Women </Link>{menu==="womens"? <hr />:<></>} </li>
+            <li  onClick={()=>{setMenu("kids")}}><Link  style={{textDecoration:'none'}} to='/Kids'>Kids </Link>{menu==="kids"? <hr />:<></>} </li>
         </ul>
         <div className="nav-login-cart">
-            <button>Login</button>
-            <img src={cart_icon} alt="" />
+      <Link to='/login' >
+        <button>
+          <span>Login</span>
+        </button>
+      </Link>
+      {/* <div className="nav-login-cart">
+      <Link to='/login'><button>Login</button></Link> */}
+
+           <Link to='/cart'><img src={cart_icon} alt="" /> </Link>
+            <div className="nav-cart-count">
+    0
+            </div>
         </div>
       </div>
     </div>
@@ -26,3 +41,49 @@ const Navbar = () => {
 }
 
 export default Navbar
+// import React, { useState } from "react";
+// import "./Navbar.css";
+// import logo from "../Assets/logoSpark.png";
+// import cart_icon from "../Assets/cart_icon.png";
+// import { Link } from "react-router-dom";
+
+// const Navbar = () => {
+//   const [menu, setMenu] = useState("shop");
+
+//   return (
+//     <div className="navbar">
+//       <div className="nav-logo">
+//         <img src={logo} alt="logo" />
+//       </div>
+//       <ul className="nav-menu">
+//         <li onClick={() => setMenu("shop")}>
+//           <Link to="/">Shop</Link>
+//           {menu === "shop" && <hr />}
+//         </li>
+//         <li onClick={() => setMenu("mens")}>
+//           <Link to="/mens">Men</Link>
+//           {menu === "mens" && <hr />}
+//         </li>
+//         <li onClick={() => setMenu("womens")}>
+//           <Link to="/womens">Women</Link>
+//           {menu === "womens" && <hr />}
+//         </li>
+//         <li onClick={() => setMenu("kids")}>
+//           <Link to="/kids">Kids</Link>
+//           {menu === "kids" && <hr />}
+//         </li>
+//       </ul>
+//       <div className="nav-login-cart">
+//         <Link to="/login">
+//           <button>Login</button>
+//         </Link>
+//         <Link to="/cart">
+//           <img src={cart_icon} alt="cart" />
+//         </Link>
+//         <div className="nav-cart-count">0</div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Navbar;
